@@ -34,6 +34,7 @@ function init () {
 	}
 	// board[1][0] =2;
 	updateBoardView();
+	scort = 0;
 }
 
 function updateBoardView () {
@@ -173,7 +174,7 @@ function gameover () {
 }
 
 function moveLeft () {
-	if (!canMoveLeft) {
+	if (!canMoveLeft(board)) {
 		return false;
 	}
 	for (var i = 0; i < 4; i++) {
@@ -190,6 +191,8 @@ function moveLeft () {
 					{
 						board[i][k] += board[i][j];
 						board[i][j] = 0;
+						score += board[i][k];
+						updateScore(score);
 						hasConflicted[i][k] = true;
 						continue;
 					}
@@ -204,7 +207,7 @@ function moveLeft () {
 }
 
 function moveRight () {
-	if (!canMoveRight) {
+	if (!canMoveRight(board)) {
 		return false;
 	}
 	for (var i = 0; i < 4; i++) {
@@ -221,6 +224,8 @@ function moveRight () {
 					{
 						board[i][k] += board[i][j];
 						board[i][j] = 0;
+						score += board[i][k];
+						updateScore(score);
 						hasConflicted[i][k] = true;
 						continue;
 					}
@@ -235,7 +240,7 @@ function moveRight () {
 }
 
 function moveUp () {
-	if (!canMoveUp) {
+	if (!canMoveUp(board)) {
 		return false;
 	}
 	for (var i = 1; i < 4; i++) {
@@ -253,6 +258,8 @@ function moveUp () {
 						showMoveAnimation(i, j, k, j);
 						board[k][j] += board[i][j];
 						board[i][j] = 0;
+						score += board[k][j];
+						updateScore(score);
 						hasConflicted[k][j] = true;
 						continue;
 					}
@@ -267,7 +274,7 @@ function moveUp () {
 }
 
 function moveDown () {
-	if (!canMoveDown) {
+	if (!canMoveDown(board)) {
 		return false;
 	}
 	for (var i = 2; i >= 0; i--) {
@@ -285,6 +292,8 @@ function moveDown () {
 						showMoveAnimation(i, j, k, j);
 						board[k][j] += board[i][j];
 						board[i][j] = 0;
+						score += board[k][j];
+						updateScore(score);
 						hasConflicted[k][j] = true;
 						continue;
 					}
