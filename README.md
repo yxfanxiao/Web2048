@@ -1,6 +1,9 @@
 # Web2048
 follow imooc &amp; add something new
 
+## Screenshot:
+![](https://github.com/yxfanxiao/Web2048/raw/master/screen.png)  
+
 ##My Note:
 ####1. init the container: contain 4*4 cells
 	grid-cell: empty cells
