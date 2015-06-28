@@ -14,6 +14,16 @@ function newgame () {
 	init();
 	generateOneNumber();
 	generateOneNumber();
+	$('header h1').css({
+		transform: 'rotate(360deg)',
+		transition: 'transform 2s ease 0s'
+	});
+	setTimeout(function(){
+		$('header h1').css({
+			transform: '',
+			transition: ''
+	})
+	},1000)
 }
 
 function init () {
@@ -113,10 +123,9 @@ function nospace (board) {
 
 
 $(document).keydown(function (event) {
-	event.preventDefault();
 	switch (event.keyCode) {
 		case 37: 
-			// event.preventDefault();
+			event.preventDefault();
 			if (moveLeft()) {
 				setTimeout(function () {
 					generateOneNumber();
@@ -126,6 +135,7 @@ $(document).keydown(function (event) {
 			} 
 			break;
 		case 38:
+			event.preventDefault();
 			if (moveUp()) {
 				setTimeout(function () {
 					generateOneNumber();
@@ -135,6 +145,7 @@ $(document).keydown(function (event) {
 			} 
 		 	break;
 		case 39:
+			event.preventDefault();
 			if (moveRight()) {
 				setTimeout(function () {
 					generateOneNumber();
@@ -144,6 +155,7 @@ $(document).keydown(function (event) {
 			} 
 		 	break;
 		case 40:
+			event.preventDefault();
 			if (moveDown()) {
 				setTimeout(function () {
 					generateOneNumber();
@@ -177,6 +189,7 @@ function moveLeft () {
 	if (!canMoveLeft(board)) {
 		return false;
 	}
+	var addScore = 0;
 	for (var i = 0; i < 4; i++) {
 		for (var j = 1; j < 4; j++) {
 			if (board[i][j] != 0) {
@@ -192,7 +205,7 @@ function moveLeft () {
 						board[i][k] += board[i][j];
 						board[i][j] = 0;
 						score += board[i][k];
-						updateScore(score);
+						addScore += board[i][k];
 						hasConflicted[i][k] = true;
 						continue;
 					}
@@ -200,6 +213,7 @@ function moveLeft () {
 			}
 		}
 	}
+	updateScore(score,addScore);
 	setTimeout(function () {
 		updateBoardView();
 	}, 150)
@@ -210,6 +224,7 @@ function moveRight () {
 	if (!canMoveRight(board)) {
 		return false;
 	}
+	var addScore = 0;
 	for (var i = 0; i < 4; i++) {
 		for (var j = 2; j >= 0; j--) {
 			if (board[i][j] != 0) {
@@ -225,7 +240,7 @@ function moveRight () {
 						board[i][k] += board[i][j];
 						board[i][j] = 0;
 						score += board[i][k];
-						updateScore(score);
+						addScore += board[i][k];
 						hasConflicted[i][k] = true;
 						continue;
 					}
@@ -233,6 +248,7 @@ function moveRight () {
 			}
 		}
 	}
+	updateScore(score,addScore);	
 	setTimeout(function () {
 		updateBoardView();
 	}, 150)
@@ -243,6 +259,7 @@ function moveUp () {
 	if (!canMoveUp(board)) {
 		return false;
 	}
+	var addScore = 0;
 	for (var i = 1; i < 4; i++) {
 		for (var j = 0; j < 4; j++) {
 			if (board[i][j] != 0) {
@@ -259,7 +276,7 @@ function moveUp () {
 						board[k][j] += board[i][j];
 						board[i][j] = 0;
 						score += board[k][j];
-						updateScore(score);
+						addScore += board[k][j];
 						hasConflicted[k][j] = true;
 						continue;
 					}
@@ -267,6 +284,7 @@ function moveUp () {
 			}
 		}
 	}
+	updateScore(score,addScore);
 	setTimeout(function () {
 		updateBoardView();
 	}, 150)
@@ -277,6 +295,7 @@ function moveDown () {
 	if (!canMoveDown(board)) {
 		return false;
 	}
+	var addScore = 0;
 	for (var i = 2; i >= 0; i--) {
 		for (var j = 0; j < 4; j++) {
 			if (board[i][j] != 0) {
@@ -293,7 +312,7 @@ function moveDown () {
 						board[k][j] += board[i][j];
 						board[i][j] = 0;
 						score += board[k][j];
-						updateScore(score);
+						addScore += board[k][j];
 						hasConflicted[k][j] = true;
 						continue;
 					}
@@ -301,6 +320,7 @@ function moveDown () {
 			}
 		}
 	}
+	updateScore(score,addScore);
 	setTimeout(function () {
 		updateBoardView();
 	}, 150)
