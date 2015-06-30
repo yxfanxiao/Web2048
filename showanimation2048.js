@@ -35,5 +35,8 @@ function updateScore (score,addScore) {
 			$i.remove();
 		});
 	}
+}
 
+function updateNewScore () {
+	$('#score').text(0);
 }

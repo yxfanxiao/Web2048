@@ -43,8 +43,10 @@ function init () {
 		}
 	}
 	// board[1][0] =2;
-	updateBoardView();
 	score = 0;
+	updateNewScore();
+	updateBoardView();
+	
 }
 
 function updateBoardView () {
