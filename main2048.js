@@ -1,4 +1,4 @@
-// main2048.js 主逻辑
+﻿// main2048.js 主逻辑
 
 var board = new Array();
 var score = 0;
@@ -44,7 +44,7 @@ function init () {
 	}
 	// board[1][0] =2;
 	updateBoardView();
-	scort = 0;
+	score = 0;
 }
 
 function updateBoardView () {
