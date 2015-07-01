@@ -28,6 +28,6 @@ follow imooc &amp; add something new
 				ConflicteFlag
 			updateBoardView
 		generateOneNumber
-		####judge isgameover()
+		judge isgameover()
 
 
